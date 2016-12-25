@@ -1,4 +1,4 @@
 class Video < ApplicationRecord
-  has_attached_file :file
-  validates_attachment :file, content_type: { content_type: ["application/x-matroska", "video/x-matroska"] }
+  has_attached_file :file, validate_media_type: false
+  validates_attachment_file_name :file, :matches => [/mkv\Z/]
 end

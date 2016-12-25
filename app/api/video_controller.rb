@@ -1,5 +1,10 @@
 class VideoController < Grape::API
   resource :video do
+    desc 'Get video list'
+    get do
+      Video.all
+    end
+
     desc 'Creates videos from uploaded files'
     params do
       requires :video, type: Hash do
@@ -9,11 +14,13 @@ class VideoController < Grape::API
       end
     end
     post do
+      videos = [];
       params.video.files.each do |file|
-        video = Video.new(:name => 'test', :file => file[:tempfile])
+        video = Video.new(:name => file[:filename], :file => file[:tempfile])
         video.save
+        videos.push(video)
       end
-      "test"
+      videos
     end
   end
 end
