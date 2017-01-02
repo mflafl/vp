@@ -5,6 +5,11 @@ class VideoController < Grape::API
       Video.all
     end
 
+    desc 'Get video by id'
+    get ':id' do
+      Video.find(params[:id])
+    end
+
     desc 'Creates videos from uploaded files'
     params do
       requires :video, type: Hash do
