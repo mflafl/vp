@@ -51,3 +51,7 @@ gem 'rack-cors'
 gem 'grape'
 gem 'grape-swagger'
 gem 'paperclip'
+
+gem 'youtube-dl.rb'
+
+gem 'sidekiq'

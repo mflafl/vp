@@ -1,4 +1,9 @@
 class VideoController < Grape::API
+  before do
+    header 'Access-Control-Allow-Origin', '*'
+    header 'Access-Control-Allow-Headers', 'Content-Type'
+  end
+
   resource :video do
     desc 'Get video list'
     get do
@@ -8,6 +13,17 @@ class VideoController < Grape::API
     desc 'Get video by id'
     get ':id' do
       Video.find(params[:id])
+    end
+
+    desc 'Creates video from url'
+
+    params do
+      requires :url, type: String
+    end
+
+    post 'url' do
+      file = YoutubeDL.get params[:url], {skip_download: true}
+      Video.new(:name => file.fulltitle)
     end
 
     desc 'Creates videos from uploaded files'
