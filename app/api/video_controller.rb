@@ -16,14 +16,12 @@ class VideoController < Grape::API
     end
 
     desc 'Creates video from url'
-
     params do
       requires :url, type: String
     end
-
     post 'url' do
-      file = YoutubeDL.get params[:url], {skip_download: true}
-      Video.new(:name => file.fulltitle)
+      Video.delete_all
+      VideoUrlDiscover.perform_async(params[:url]);
     end
 
     desc 'Creates videos from uploaded files'

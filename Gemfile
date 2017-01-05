@@ -55,3 +55,4 @@ gem 'paperclip'
 gem 'youtube-dl.rb'
 
 gem 'sidekiq'
+gem 'redis-namespace'
