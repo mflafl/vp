@@ -20,8 +20,7 @@ class VideoController < Grape::API
       requires :url, type: String
     end
     post 'url' do
-      Video.delete_all
-      VideoUrlDiscover.perform_async(params[:url]);
+      VideoUrlDownload.perform_async(params[:url])
     end
 
     desc 'Creates videos from uploaded files'
