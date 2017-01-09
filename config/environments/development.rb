@@ -52,5 +52,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  config.action_controller.asset_host = 'http://localhost:3000'
   Rails.application.config.action_cable.allowed_request_origins = ['http://localhost:4200']
 end

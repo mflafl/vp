@@ -2,6 +2,7 @@ class VideoController < Grape::API
   before do
     header 'Access-Control-Allow-Origin', '*'
     header 'Access-Control-Allow-Headers', 'Content-Type'
+    header 'Access-Control-Allow-Methods', 'DELETE'
   end
 
   resource :video do
@@ -39,6 +40,12 @@ class VideoController < Grape::API
         videos.push(video)
       end
       videos
+    end
+
+    desc 'Delete video by id'
+    delete ':id' do
+      video = Video.find params[:id]
+      video.destroy
     end
   end
 end
