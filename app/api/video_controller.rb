@@ -6,13 +6,13 @@ class VideoController < Grape::API
 
   resource :video do
     desc 'Get video list'
-    get do
-      Video.all
+    get :rabl => 'video/list' do
+      @items = Video.all
     end
 
     desc 'Get video by id'
-    get ':id' do
-      Video.find(params[:id])
+    get ':id', :rabl => 'video/detail' do
+      @item = Video.find(params[:id])
     end
 
     desc 'Creates video from url'

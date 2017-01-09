@@ -11,4 +11,14 @@ use Rack::Cors do
   end
 end
 
+use Rack::Config do |env|
+  env['api.tilt.root'] = 'app/views'
+end
+
+Rabl.configure do |c|
+  c.view_paths = [
+      Rails.root.join('app/views')
+  ]
+end
+
 run Rails.application

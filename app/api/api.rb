@@ -1,7 +1,8 @@
 class API < Grape::API
   version 'v1'
-  format :json
   prefix 'api'
-  mount VideoController
+  format :json
+  formatter :json, Grape::Formatter::Rabl
   add_swagger_documentation
+  mount VideoController
 end

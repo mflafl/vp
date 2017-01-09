@@ -47,12 +47,13 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'rack-cors'
 gem 'grape'
 gem 'grape-swagger'
+gem 'grape-rabl'
+
 gem 'paperclip'
 
 gem 'youtube-dl.rb'
 
 gem 'sidekiq'
-gem 'redis-namespace'
+gem 'rack-cors'
