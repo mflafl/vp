@@ -24,6 +24,16 @@ class VideoController < Grape::API
       VideoUrlDownload.perform_async(params[:url])
     end
 
+    desc 'Crops video'
+    params do
+      requires :from, type: Integer
+      requires :to, type: Integer
+    end
+    post ':id/crop' do
+      video = Video.find(params[:id])
+      VideoCrop.perform_async(params)
+    end
+
     desc 'Creates videos from uploaded files'
     params do
       requires :video, type: Hash do
