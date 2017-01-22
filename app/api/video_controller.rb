@@ -30,7 +30,6 @@ class VideoController < Grape::API
       requires :to, type: Integer
     end
     post ':id/crop' do
-      video = Video.find(params[:id])
       VideoCrop.perform_async(params)
     end
 
